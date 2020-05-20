@@ -11,9 +11,6 @@
 
 	extern void yyerror(const char *);  
 	static void comment(void);
-
-
-
 %}
 
 
@@ -35,8 +32,6 @@ int			{    return(INT); }
 float		{    return(FLOAT); }
 char		{    return(CHAR); }
 void		{    return(VOID); }
-
-
 
 
 	/* Headers */

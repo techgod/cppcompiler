@@ -561,10 +561,7 @@ char *yytext;
 
 	extern void yyerror(const char *);  
 	static void comment(void);
-
-
-
-#line 568 "lex.yy.c"
+#line 565 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -746,10 +743,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 26 "icg.l"
+#line 23 "icg.l"
 
 
-#line 753 "lex.yy.c"
+#line 750 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -835,97 +832,97 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 28 "icg.l"
+#line 25 "icg.l"
 {   line++;	}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 29 "icg.l"
+#line 26 "icg.l"
 { comment(); }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 30 "icg.l"
+#line 27 "icg.l"
 { /* Consume Comment */ }
 	YY_BREAK
 /* Data Types */
 case 4:
 YY_RULE_SETUP
-#line 34 "icg.l"
+#line 31 "icg.l"
 {    return(INT); }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 35 "icg.l"
+#line 32 "icg.l"
 {    return(FLOAT); }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 36 "icg.l"
+#line 33 "icg.l"
 {    return(CHAR); }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 37 "icg.l"
+#line 34 "icg.l"
 {    return(VOID); }
 	YY_BREAK
 /* Headers */
 case 8:
 YY_RULE_SETUP
-#line 43 "icg.l"
+#line 40 "icg.l"
 {   return HASH; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 44 "icg.l"
+#line 41 "icg.l"
 {   return INCLUDE; }
 	YY_BREAK
 /* C Libraries */
 case 10:
 YY_RULE_SETUP
-#line 48 "icg.l"
+#line 45 "icg.l"
 {    return MATH; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 49 "icg.l"
+#line 46 "icg.l"
 {    return STDIO; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 50 "icg.l"
+#line 47 "icg.l"
 {    return STDLIB; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 51 "icg.l"
+#line 48 "icg.l"
 {    return STRING; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 52 "icg.l"
+#line 49 "icg.l"
 {    return TIME; }
 	YY_BREAK
 /* Control Structures */
 case 15:
 YY_RULE_SETUP
-#line 55 "icg.l"
+#line 52 "icg.l"
 {    return FOR; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 58 "icg.l"
+#line 55 "icg.l"
 { 	  return PRINT; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 59 "icg.l"
+#line 56 "icg.l"
 { 	  return RETURN; }
 	YY_BREAK
 /* User Defined Data Types, Identifiers */
 case 18:
 YY_RULE_SETUP
-#line 63 "icg.l"
+#line 60 "icg.l"
 {	
 									
 									strcpy(yylval.sval, yytext);
@@ -934,7 +931,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 68 "icg.l"
+#line 65 "icg.l"
 {	
 									 
 									strcpy(yylval.sval, yytext);  
@@ -943,7 +940,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 73 "icg.l"
+#line 70 "icg.l"
 {	
 									 
 									strcpy(yylval.sval, yytext); 
@@ -952,7 +949,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 79 "icg.l"
+#line 76 "icg.l"
 {	
 									
 									strcpy(yylval.sval, yytext);
@@ -961,7 +958,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 85 "icg.l"
+#line 82 "icg.l"
 {  
 									
 									strcpy(yylval.sval, yytext);
@@ -970,7 +967,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 91 "icg.l"
+#line 88 "icg.l"
 {  
 									
 									strcpy(yylval.sval, yytext);
@@ -980,197 +977,197 @@ YY_RULE_SETUP
 /* Assignment Operators */
 case 24:
 YY_RULE_SETUP
-#line 99 "icg.l"
+#line 96 "icg.l"
 {   return(ADD_ASSIGN); }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 100 "icg.l"
+#line 97 "icg.l"
 {   return(SUB_ASSIGN); }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 101 "icg.l"
+#line 98 "icg.l"
 {   return(MUL_ASSIGN); }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 102 "icg.l"
+#line 99 "icg.l"
 {   return(DIV_ASSIGN); }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 103 "icg.l"
+#line 100 "icg.l"
 {   return(MOD_ASSIGN); }
 	YY_BREAK
 /* Relational Operators */
 case 29:
 YY_RULE_SETUP
-#line 106 "icg.l"
+#line 103 "icg.l"
 {   return(INC_OP); }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 107 "icg.l"
+#line 104 "icg.l"
 {   return(DEC_OP); }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 108 "icg.l"
+#line 105 "icg.l"
 {   return(LE_OP); }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 109 "icg.l"
+#line 106 "icg.l"
 {   return(GE_OP); }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 110 "icg.l"
+#line 107 "icg.l"
 {   return(EQ_OP); }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 111 "icg.l"
+#line 108 "icg.l"
 {   return(NE_OP); }
 	YY_BREAK
 /* Basic Syntax */
 case 35:
 YY_RULE_SETUP
-#line 114 "icg.l"
+#line 111 "icg.l"
 {   return(';'); }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 115 "icg.l"
+#line 112 "icg.l"
 {   return('{'); }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 116 "icg.l"
+#line 113 "icg.l"
 {   return('}'); }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 117 "icg.l"
+#line 114 "icg.l"
 {   return(','); }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 118 "icg.l"
+#line 115 "icg.l"
 {   return(':'); }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 119 "icg.l"
+#line 116 "icg.l"
 {   return('='); }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 120 "icg.l"
+#line 117 "icg.l"
 {   return('('); }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 121 "icg.l"
+#line 118 "icg.l"
 {   return(')'); }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 122 "icg.l"
+#line 119 "icg.l"
 {   return('['); }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 123 "icg.l"
+#line 120 "icg.l"
 {   return(']'); }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 124 "icg.l"
+#line 121 "icg.l"
 {   return('.'); }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 125 "icg.l"
+#line 122 "icg.l"
 {   return('&'); }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 126 "icg.l"
+#line 123 "icg.l"
 {   return('!'); }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 127 "icg.l"
+#line 124 "icg.l"
 {   return('~'); }
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 128 "icg.l"
+#line 125 "icg.l"
 {   return('-'); }
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 129 "icg.l"
+#line 126 "icg.l"
 {   return('+'); }
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 130 "icg.l"
+#line 127 "icg.l"
 {   return('*'); }
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 131 "icg.l"
+#line 128 "icg.l"
 {   return('/'); }
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 132 "icg.l"
+#line 129 "icg.l"
 {   return('%'); }
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 133 "icg.l"
+#line 130 "icg.l"
 {   return('<'); }
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 134 "icg.l"
+#line 131 "icg.l"
 {   return('>'); }
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 135 "icg.l"
+#line 132 "icg.l"
 {   return('^'); }
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 136 "icg.l"
+#line 133 "icg.l"
 {   return('|'); }
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 137 "icg.l"
+#line 134 "icg.l"
 {   return('?'); }
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 140 "icg.l"
+#line 137 "icg.l"
 {  /* whitespace separates tokens */}
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 142 "icg.l"
+#line 139 "icg.l"
 { printf("No Match, Invalid Expression %s\n", yytext); return yytext[0];}
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 144 "icg.l"
+#line 141 "icg.l"
 ECHO;
 	YY_BREAK
-#line 1174 "lex.yy.c"
+#line 1171 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2167,7 +2164,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 144 "icg.l"
+#line 141 "icg.l"
 
 
 

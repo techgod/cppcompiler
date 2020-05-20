@@ -1,22 +1,4 @@
 	Op		Arg1		Arg2		Res
 ------------------------------------------------------------------------
-	=		5		  		x
-	=		1		  		p
-	=		1		  		i
-	Label		  		  		L0
-	<=		i		x		t0
-	ifFalse		t0		  		L1
-	*		x		i		t1
-	=		t1		  		p
-	+		i		1 		t2
-	=		t2		  		i
-	goto		  		  		L0
-	Label		  		  		L1
-	>		x		p		t3
-	ifFalse		t3		  		L2
-	=		x		  		t4
-	goto		  		  		L3
-	Label		  		  		L2
-	=		p		  		t4
-	Label		  		  		L3
-	=		t4		  		j
+	*		20		10		t0
+	=		t0		  		x

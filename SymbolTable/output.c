@@ -1,10 +1,14 @@
 int main(){
 	
-	int sum =  5.5;
-	for(int i = 0; i < 75; i++){
-		int p = 7;
-		int p;
-		sum = sum+i;
-	}
-	int  res = (sum > 100) ? 1 : 0;
+    int x = 5;
+    int p = 1;
+    
+    int i;
+    
+    for(i=1;i<=x;i++)
+    {
+        p=x*i;
+    }
+    
+    int j = (x > p)?x:p;
 }

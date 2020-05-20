@@ -10,7 +10,4 @@ int main(){
     {
         p=x*i;
     }
-    
-    int j = (x > p)?x:p;
-
 }

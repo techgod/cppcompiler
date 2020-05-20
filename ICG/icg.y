@@ -24,9 +24,6 @@
 
 	char intbuf[20];
 	char secIDbuf[20];
-
-
-
 %}
 
 %token  HASH INCLUDE STDIO STDLIB MATH STRING TIME 
@@ -47,6 +44,8 @@
 %token 	<sval> FLOAT_LITERAL 
 %token	<sval> IDENTIFIER  
 %token 	<sval> FOR 
+%token 	<sval> WHILE 
+
 
 %token	INC_OP 	DEC_OP 	LE_OP 	GE_OP 	EQ_OP 	NE_OP
 %token	MUL_ASSIGN 	DIV_ASSIGN 	MOD_ASSIGN 	ADD_ASSIGN 	SUB_ASSIGN
@@ -137,11 +136,45 @@ statement
 	: compound_statement 
 	| expression_statement
 	| iteration_statement
+	| iteration_2_statement
+	;
+
+
+iteration_2_statement
+	: 
+	WHILE '(' 
+	{
+		fprintf(fp_icg,"L%d:\n", ln);
+		fprintf(fp_quad, "\tLabel\t\t  \t\t  \t\tL%d\n", ln);
+		ln++;
+	}
+	expression
+		{
+			
+			fprintf(fp_icg, "ifFalse t%d goto L%d\n", --tempno, ln);
+			fprintf(fp_quad, "\tifFalse\t\tt%d\t\t  \t\tL%d\n", tempno, ln);
+			tempno++;
+		}	 
+	')' statement 	 
+		{
+			exprno = -1;
+
+			//end of expression 3
+
+			fprintf(fp_icg, "goto L%d\n", --ln);
+			fprintf(fp_quad, "\tgoto\t\t  \t\t  \t\tL%d\n", ln);
+			ln++;
+
+			fprintf(fp_icg, "L%d:\n", ln);
+			fprintf(fp_quad, "\t Label\t\t  \t\t  \t\tL%d\n", ln);
+			ln++;	
+		}
 	;
 
 
 iteration_statement
-	: FOR '(' expression_statement 
+	: 
+	FOR '(' expression_statement 
 		{ 
 			fprintf(fp_icg,"L%d:\n", ln);
 			fprintf(fp_quad, "\tLabel\t\t  \t\t  \t\tL%d\n", ln);
@@ -302,14 +335,10 @@ iteration_statement
 			ln++;
 
 			fprintf(fp_icg, "L%d:\n", ln);
-			fprintf(fp_quad, "\tLabel\t\t  \t\t  \t\tL%d\n", ln);
+			fprintf(fp_quad, "\t Label\t\t  \t\t  \t\tL%d\n", ln);
 			ln++;
 
 		}
-
-	// | FOR '(' expression_statement expression_statement ')' statement 			 
-	// | FOR '(' declaration expression_statement ')' statement	 				
-	// | FOR '(' declaration expression_statement expression ')' statement 			
 	;
 
 
@@ -653,7 +682,7 @@ postfix_expression
 	: primary_expression		{	strcpy($$, $1); }	
 	| postfix_expression INC_OP	
 		{
-			sprintf(buffer,"t%d",tempno++);
+			sprintf(buffer,"t%d ",tempno++);
 			m = strlen(buffer);
 			buffer[m] = '\0';
 			fprintf(fp_icg, "%s = %s + 1\n",buffer, $1);
@@ -728,7 +757,7 @@ equality_expression
 	: relational_expression		{	strcpy($$, $1); }
 	| equality_expression EQ_OP relational_expression
 		{
-			sprintf(buffer,"t%d",tempno++);
+			sprintf(buffer,"t %d",tempno++);
 			m = strlen(buffer);
 			buffer[m] = '\0';
 			fprintf(fp_icg, "%s = %s == %s\n", buffer, $1, $3);
@@ -738,7 +767,7 @@ equality_expression
 		}
 	| equality_expression NE_OP relational_expression
 		{
-			sprintf(buffer,"t%d",tempno++);
+			sprintf(buffer,"t %d",tempno++);
 			m = strlen(buffer);
 			buffer[m] = '\0';
 			fprintf(fp_icg, "%s = %s != %s\n",buffer, $1, $3);
@@ -753,7 +782,7 @@ relational_expression
 	: additive_expression		{	strcpy($$, $1); }
 	| relational_expression '<' additive_expression
 		{
-			sprintf(buffer,"t%d",tempno++);
+			sprintf(buffer,"t %d",tempno++);
 			m = strlen(buffer);
 			buffer[m] = '\0';
 			fprintf(fp_icg, "%s = %s < %s\n",buffer, $1, $3);
@@ -926,7 +955,7 @@ identifier_list
 
 void yyerror(const char *str){
 	fflush(stdout);
-	printf("Line:%d: ", line);
+	printf("Line:%d:", line);
 	printf("\033[1;31m");
 	printf("error: ");
 	printf("\033[0m");
@@ -936,11 +965,9 @@ void yyerror(const char *str){
 
 int main(){
 	
-	fp_icg 	 	= fopen("IntermediateCode/icg.txt", "w");
-	fp_quad		= fopen("IntermediateCode/quad.txt", "w");
-	printf("\n");
+	fp_icg 	 	= fopen("Outputs/icg.txt", "w");
+	fp_quad		= fopen("Outputs/quad.txt", "w");
 	
-
 	fprintf(fp_quad, "\tOp\t\tArg1\t\tArg2\t\tRes\n");
 	fprintf(fp_quad, "------------------------------------------------------------------------\n");
 
@@ -948,15 +975,10 @@ int main(){
 	
 	fclose(fp_icg);
 	
-	printf("\n\nIntermediate Code\n\n");
-	system("cat IntermediateCode/icg.txt");
+	printf("Intermediate Code\n\n");
 
-	printf("\n\nQuadruple Format\n\n");
-	
-	
-
+	system("cat Outputs/icg.txt");	
 	fclose(fp_quad);
-	system("cat IntermediateCode/quad.txt");
 	
 	return 0;
 }

@@ -1,6 +1,9 @@
 import re
 import sys
 
+opf = open("Outputs/assembly_op.txt","w")
+sys.stdout= opf
+
 icg_file = sys.argv[1]
 registers=['r0','r1','r2','r3','r4','r5','r6','r7','r8','r9','r10','r11','r12']
 #loops={}
@@ -71,7 +74,6 @@ def isdigit(x):
 
 def assemble(lines, message = "") :
     for i in range(len(lines)):
-        freeRegisters(i)
         #print("Line: ",i)
         #print("Alloc:",alloc)
 
@@ -148,6 +150,10 @@ def assemble(lines, message = "") :
                 # It's one of the arithmetic operations.
                 # Saving this to be used in the next line.
                 lis.append(token)
+
+        #Store values of registers which end at this line.
+        freeRegisters(i)
+
 
     for var in alloc:
         if(not re.search("^t[0-9]+", var)):

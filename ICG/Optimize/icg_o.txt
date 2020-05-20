@@ -1,2 +1,10 @@
-t0 = 200
-x = t0
+n = 5
+p = 1
+i = 1
+L0:
+t0 = i <= n
+ifFalse t0 goto L1
+t1 = p * i
+p = t1
+goto L0
+L1:

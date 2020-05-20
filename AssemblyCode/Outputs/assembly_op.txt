@@ -1,0 +1,12 @@
+LDR r0,#5
+LDR r1,#1
+LDR r2,#1
+L0:
+CMP r2,r0
+BGT L1
+STR n,r0
+MUL r1,r1,r2
+STR i,r2
+B L0
+STR p,r1
+L1:

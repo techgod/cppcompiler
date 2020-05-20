@@ -2,13 +2,9 @@
 	#include <stdio.h>
 	#include <stdlib.h>
 	#include <string.h>
-
 	#include "y.tab.h"
-
 	int line = 1;
-	
 	extern FILE * fp;
-
 	extern void yyerror(const char *);  
 	static void comment(void);
 %}
@@ -22,38 +18,35 @@ WS  		[ \t\v\f]
 
 %%
 
-[\n]		{   line++;	}
-"/*"		{ comment(); }
-"//"[^\n]*	{ /* Consume Comment */ }
-
-
-	/* Data Types */
 int			{    return(INT); }
 float		{    return(FLOAT); }
 char		{    return(CHAR); }
 void		{    return(VOID); }
 
 
-	/* Headers */
+[\n]		{   line++;	}
+"/*"		{ comment(); }
+"//"[^\n]*	{ /* Consume Comment */ }
+
+
 "#"			{   return HASH; }
 include		{   return INCLUDE; }
 
-
-	/* C Libraries */
 "math.h"	{    return MATH; }
 "stdio.h"	{    return STDIO; }
 "stdlib.h"	{    return STDLIB; }
 "string.h"	{    return STRING; }
 "time.h"	{    return TIME; }
 
-	/* Control Structures */
+
 for			{    return FOR; }
+while		{    return WHILE; }
+
 
 
 printf 		{ 	  return PRINT; }
 return 		{ 	  return RETURN; }
 
-	/* User Defined Data Types, Identifiers */
 
 {L}{A}*							{	
 									
@@ -90,14 +83,12 @@ return 		{ 	  return RETURN; }
 								}
 
 
-	/* Assignment Operators */
 "+="		{   return(ADD_ASSIGN); }
 "-="		{   return(SUB_ASSIGN); }
 "*="		{   return(MUL_ASSIGN); }
 "/="		{   return(DIV_ASSIGN); }
 "%="		{   return(MOD_ASSIGN); }
 
-	/* Relational Operators */
 "++"		{   return(INC_OP); }
 "--"		{   return(DEC_OP); }
 "<="		{   return(LE_OP); }
@@ -105,7 +96,6 @@ return 		{ 	  return RETURN; }
 "=="		{   return(EQ_OP); }
 "!="		{   return(NE_OP); }
 
-	/* Basic Syntax */
 ";"			{   return(';'); }
 "{"			{   return('{'); }
 "}"			{   return('}'); }

@@ -4,14 +4,12 @@
 	#include <string.h>
 	#include <limits.h>
 	
-
 	void yyerror(const char*);
 	int yylex();
 	extern FILE * yyin, *yyout;
 
 	int x=0;
 	
-
 	extern int line;
 	
 	int scope = 0;

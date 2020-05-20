@@ -56,21 +56,22 @@
      FLOAT_LITERAL = 272,
      IDENTIFIER = 273,
      FOR = 274,
-     INC_OP = 275,
-     DEC_OP = 276,
-     LE_OP = 277,
-     GE_OP = 278,
-     EQ_OP = 279,
-     NE_OP = 280,
-     MUL_ASSIGN = 281,
-     DIV_ASSIGN = 282,
-     MOD_ASSIGN = 283,
-     ADD_ASSIGN = 284,
-     SUB_ASSIGN = 285,
-     CHAR = 286,
-     INT = 287,
-     FLOAT = 288,
-     VOID = 289
+     WHILE = 275,
+     INC_OP = 276,
+     DEC_OP = 277,
+     LE_OP = 278,
+     GE_OP = 279,
+     EQ_OP = 280,
+     NE_OP = 281,
+     MUL_ASSIGN = 282,
+     DIV_ASSIGN = 283,
+     MOD_ASSIGN = 284,
+     ADD_ASSIGN = 285,
+     SUB_ASSIGN = 286,
+     CHAR = 287,
+     INT = 288,
+     FLOAT = 289,
+     VOID = 290
    };
 #endif
 /* Tokens.  */
@@ -91,33 +92,34 @@
 #define FLOAT_LITERAL 272
 #define IDENTIFIER 273
 #define FOR 274
-#define INC_OP 275
-#define DEC_OP 276
-#define LE_OP 277
-#define GE_OP 278
-#define EQ_OP 279
-#define NE_OP 280
-#define MUL_ASSIGN 281
-#define DIV_ASSIGN 282
-#define MOD_ASSIGN 283
-#define ADD_ASSIGN 284
-#define SUB_ASSIGN 285
-#define CHAR 286
-#define INT 287
-#define FLOAT 288
-#define VOID 289
+#define WHILE 275
+#define INC_OP 276
+#define DEC_OP 277
+#define LE_OP 278
+#define GE_OP 279
+#define EQ_OP 280
+#define NE_OP 281
+#define MUL_ASSIGN 282
+#define DIV_ASSIGN 283
+#define MOD_ASSIGN 284
+#define ADD_ASSIGN 285
+#define SUB_ASSIGN 286
+#define CHAR 287
+#define INT 288
+#define FLOAT 289
+#define VOID 290
 
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 40 "icg.y"
+#line 37 "icg.y"
 {	
 	char sval[300];
 }
 /* Line 1529 of yacc.c.  */
-#line 121 "y.tab.h"
+#line 123 "y.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

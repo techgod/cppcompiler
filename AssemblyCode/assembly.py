@@ -136,7 +136,7 @@ def assemble(lines, message = "") :
                         print('MUL '+register+','+alloc[lis[0][2]]+','+isdigit(lis[0][4]))
                         lis.pop(0)
                     elif(lis[0][3]=='/'):
-                        print('DIV '+register+','+alloc[lis[0][2]]+','+isdigit(lis[0][4]))
+                        print('SDIV '+register+','+alloc[lis[0][2]]+','+isdigit(lis[0][4]))
                         lis.pop(0)
                     if do_str:
                         print("STR "+token[0]+','+reg)

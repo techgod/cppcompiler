@@ -1,15 +1,16 @@
-LDR r0,#5
-LDR r1,#1
-LDR r2,#1
-L0:
-CMP r2,r0
-BGT L1
-MUL r1,r0,r2
-STR x,r0
-ADD r2,r2,#1
-B L0
-STR i,r2
-L1:
-LDR r2,r1
-STR p,r1
-STR final,r2
+LDR R0,#1
+LDR R1,#2
+LDR R2,#3
+LDR R3,#4
+LDR R4,#5
+STR e,R4
+LDR R4,#6
+STR f,R4
+MUL R4,R0,R1
+STR g,R4
+STR a,R0
+STR b,R1
+MUL R1,R2,R3
+STR c,R2
+STR d,R3
+STR h,R1

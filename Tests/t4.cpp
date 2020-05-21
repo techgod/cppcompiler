@@ -1,13 +1,15 @@
-int main(){
-    
-   //Program to find factorial of a number
-    int x = 5;
-    int p = 1;
-    
-    int i;
-    
-    for(i=1;i<=x;i++)
-    {
-        p=x*i;
-    }
+int main()
+{
+    //Test to show what happens when all registers are full
+    int a = 1;
+    int b = 2;
+    int c = 3;
+    int d = 4;
+    int e = 5;
+    int f = 6;
+
+    int g;
+    int h;
+    g = a * b;
+    h = c * d;
 }

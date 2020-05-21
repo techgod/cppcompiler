@@ -1,5 +1,5 @@
-int main()
-{
+int main(){
+    
    //Program to find factorial of a number
     int x = 5;
     int p = 1;
@@ -10,6 +10,4 @@ int main()
     {
         p=x*i;
     }
-
-    int final = p;
 }

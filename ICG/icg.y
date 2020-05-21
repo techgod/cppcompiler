@@ -157,8 +157,6 @@ iteration_2_statement
 		}	 
 	')' statement 	 
 		{
-			exprno = -1;
-
 			//end of expression 3
 
 			fprintf(fp_icg, "goto L%d\n", --ln);
@@ -508,6 +506,18 @@ init_declarator_list
 init_declarator
 	: IDENTIFIER  '=' assignment_expression		
 		{
+			if(*$3!='\0')
+			{
+				fprintf(fp_icg, "%s = %s\n", $1, $3); 
+				fprintf(fp_quad, "\t=\t\t%s\t\t  \t\t%s\n", $3, $1);
+			}
+			else
+			{
+				fprintf(fp_icg, "%s = t%d\n", $1, --tempno); 
+				fprintf(fp_quad, "\t=\t\tt%d\t\t  \t\t%s\n", tempno, $1);
+				tempno++;
+			}
+			/*
 			if(tempno > 0){
 				fprintf(fp_icg, "%s = t%d\n", $1, --tempno); 
 				fprintf(fp_quad, "\t=\t\tt%d\t\t  \t\t%s\n", tempno, $1);
@@ -516,8 +526,8 @@ init_declarator
 			else if(tempno == 0){
 				fprintf(fp_icg, "%s = %s\n", $1, $3); 
 				fprintf(fp_quad, "\t=\t\t%s\t\t  \t\t%s\n", $3, $1);
-		
 			}
+			*/
 			
 		}			
 	| IDENTIFIER
@@ -975,9 +985,9 @@ int main(){
 	
 	fclose(fp_icg);
 	
-	printf("Intermediate Code\n\n");
+	//printf("Intermediate Code\n\n");
 
-	system("cat Outputs/icg.txt");	
+	//system("cat Outputs/icg.txt");	
 	fclose(fp_quad);
 	
 	return 0;

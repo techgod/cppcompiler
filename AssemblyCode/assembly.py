@@ -69,7 +69,8 @@ def isdigit(x):
     if(x.isdigit()):
         var+=("#"+x)
     else:
-        var+=alloc[x]
+        if x in alloc:
+            var+=alloc[x]
     return var
 
 def assemble(lines, message = "") :
@@ -78,6 +79,7 @@ def assemble(lines, message = "") :
         #print("Alloc:",alloc)
 
         token=lines[i].split()
+        #print(token)
 
         #Labels
         if(len(token)==1):
@@ -92,6 +94,7 @@ def assemble(lines, message = "") :
             if(token[0] in alloc and len(lis)==0):
                 print("LDR "+ reg +','+isdigit(token[2]))
 
+            # Assignment Operation without any prior arithmetic operation
             if(token[1]=='=' and token[0] not in alloc and len(lis)==0):
                 reg=registers.pop(0)
                 print("LDR "+ reg +','+isdigit(token[2]))
@@ -157,8 +160,6 @@ def assemble(lines, message = "") :
 
     for var in alloc:
         if(not re.search("^t[0-9]+", var)):
-            #adr=registers.pop()
-            #print("LDR "+adr+ ',=' + i)
             print("STR "+var+','+alloc[var])
 
 

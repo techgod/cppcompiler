@@ -1,12 +1,15 @@
 	Op		Arg1		Arg2		Res
 ------------------------------------------------------------------------
-	=		5		  		n
+	=		5		  		x
 	=		1		  		p
 	=		1		  		i
 	Label		  		  		L0
-	<=		i		n		t0
+	<=		i		x		t0
 	ifFalse		t0		  		L1
-	*		p		i		t1
+	*		x		i		t1
 	=		t1		  		p
+	+		i		1 		t2
+	=		t2		  		i
 	goto		  		  		L0
 	 Label		  		  		L1
+	=		p		  		final

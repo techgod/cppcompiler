@@ -1,11 +1,15 @@
 int main()
 {
-    int n = 5;
+   //Program to find factorial of a number
+    int x = 5;
     int p = 1;
-    int i = 1;
-
-    while(i<=n)
+    
+    int i;
+    
+    for(i=1;i<=x;i++)
     {
-        p = p*i;
+        p=x*i;
     }
+
+    int final = p;
 }

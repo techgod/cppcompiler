@@ -4,9 +4,12 @@ LDR r2,#1
 L0:
 CMP r2,r0
 BGT L1
-STR n,r0
-MUL r1,r1,r2
-STR i,r2
+MUL r1,r0,r2
+STR x,r0
+ADD r2,r2,#1
 B L0
-STR p,r1
+STR i,r2
 L1:
+LDR r2,r1
+STR p,r1
+STR final,r2

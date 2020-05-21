@@ -1,13 +1,6 @@
 int main(){
-    
-   //Program to find factorial of a number
+    //Free Register Demo
     int x = 5;
-    int p = 1;
-    
-    int i;
-    
-    for(i=1;i<=x;i++)
-    {
-        p=x*i;
-    }
+    int z = x*10;
+    int y = 8;
 }

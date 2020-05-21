@@ -541,15 +541,15 @@ static const yytype_uint16 yyrline[] =
        0,    72,    72,    76,    77,    78,    83,    84,    89,    90,
       95,    96,    97,    98,    99,   104,   105,   110,   111,   116,
      117,   118,   119,   120,   125,   126,   131,   136,   137,   138,
-     139,   146,   152,   145,   178,   185,   177,   346,   355,   363,
-     371,   379,   392,   404,   416,   428,   444,   460,   476,   495,
-     496,   497,   498,   503,   504,   509,   523,   528,   529,   613,
-     614,   615,   616,   617,   618,   623,   625,   632,   624,   661,
-     662,   667,   668,   673,   674,   675,   676,   677,   682,   683,
-     695,   710,   711,   747,   748,   749,   750,   751,   752,   757,
-     758,   768,   782,   783,   793,   803,   813,   827,   828,   839,
-     853,   854,   864,   874,   888,   889,   893,   901,   910,   916,
-     920,   921,   926,   927,   932,   933,   938,   943
+     139,   146,   152,   145,   176,   183,   175,   344,   353,   361,
+     369,   377,   390,   402,   414,   426,   442,   458,   474,   493,
+     494,   495,   496,   501,   502,   507,   533,   538,   539,   623,
+     624,   625,   626,   627,   628,   633,   635,   642,   634,   671,
+     672,   677,   678,   683,   684,   685,   686,   687,   692,   693,
+     705,   720,   721,   757,   758,   759,   760,   761,   762,   767,
+     768,   778,   792,   793,   803,   813,   823,   837,   838,   849,
+     863,   864,   874,   884,   898,   899,   903,   911,   920,   926,
+     930,   931,   936,   937,   942,   943,   948,   953
 };
 #endif
 
@@ -1629,8 +1629,6 @@ yyreduce:
   case 33:
 #line 159 "icg.y"
     {
-			exprno = -1;
-
 			//end of expression 3
 
 			fprintf(fp_icg, "goto L%d\n", --ln);
@@ -1644,7 +1642,7 @@ yyreduce:
     break;
 
   case 34:
-#line 178 "icg.y"
+#line 176 "icg.y"
     { 
 			fprintf(fp_icg,"L%d:\n", ln);
 			fprintf(fp_quad, "\tLabel\t\t  \t\t  \t\tL%d\n", ln);
@@ -1654,7 +1652,7 @@ yyreduce:
     break;
 
   case 35:
-#line 185 "icg.y"
+#line 183 "icg.y"
     {
 			fprintf(fp_icg, "ifFalse t%d goto L%d\n", --tempno, ln);
 			fprintf(fp_quad, "\tifFalse\t\tt%d\t\t  \t\tL%d\n", tempno, ln);
@@ -1663,7 +1661,7 @@ yyreduce:
     break;
 
   case 36:
-#line 191 "icg.y"
+#line 189 "icg.y"
     {
 		
 			//expression 3
@@ -1818,7 +1816,7 @@ yyreduce:
     break;
 
   case 37:
-#line 347 "icg.y"
+#line 345 "icg.y"
     {  
 			// printf("ID %s\n", $1);
 			exprno = 0; 
@@ -1830,7 +1828,7 @@ yyreduce:
     break;
 
   case 38:
-#line 356 "icg.y"
+#line 354 "icg.y"
     {  
 			exprno = 1;
 
@@ -1841,7 +1839,7 @@ yyreduce:
     break;
 
   case 39:
-#line 364 "icg.y"
+#line 362 "icg.y"
     {  
 			exprno = 2;
 
@@ -1852,7 +1850,7 @@ yyreduce:
     break;
 
   case 40:
-#line 372 "icg.y"
+#line 370 "icg.y"
     {  
 			exprno = 3; 
 
@@ -1863,7 +1861,7 @@ yyreduce:
     break;
 
   case 41:
-#line 380 "icg.y"
+#line 378 "icg.y"
     {  
 			exprno = 4; 
 
@@ -1879,7 +1877,7 @@ yyreduce:
     break;
 
   case 42:
-#line 393 "icg.y"
+#line 391 "icg.y"
     {  
 			exprno = 5;
 			
@@ -1894,7 +1892,7 @@ yyreduce:
     break;
 
   case 43:
-#line 405 "icg.y"
+#line 403 "icg.y"
     {  
 			exprno = 6;
 			
@@ -1909,7 +1907,7 @@ yyreduce:
     break;
 
   case 44:
-#line 417 "icg.y"
+#line 415 "icg.y"
     {  
 			exprno = 7; 
 			
@@ -1924,7 +1922,7 @@ yyreduce:
     break;
 
   case 45:
-#line 429 "icg.y"
+#line 427 "icg.y"
     {  
 			exprno = 8;
 
@@ -1943,7 +1941,7 @@ yyreduce:
     break;
 
   case 46:
-#line 445 "icg.y"
+#line 443 "icg.y"
     {  
 			exprno = 9;
 			
@@ -1962,7 +1960,7 @@ yyreduce:
     break;
 
   case 47:
-#line 461 "icg.y"
+#line 459 "icg.y"
     {  
 			exprno = 10; 
 			
@@ -1981,7 +1979,7 @@ yyreduce:
     break;
 
   case 48:
-#line 477 "icg.y"
+#line 475 "icg.y"
     {  
 			exprno = 11; 
 
@@ -2000,29 +1998,41 @@ yyreduce:
     break;
 
   case 55:
-#line 510 "icg.y"
+#line 508 "icg.y"
     {
-			if(tempno > 0){
+			if(*(yyvsp[(3) - (3)].sval)!='\0')
+			{
+				fprintf(fp_icg, "%s = %s\n", (yyvsp[(1) - (3)].sval), (yyvsp[(3) - (3)].sval)); 
+				fprintf(fp_quad, "\t=\t\t%s\t\t  \t\t%s\n", (yyvsp[(3) - (3)].sval), (yyvsp[(1) - (3)].sval));
+			}
+			else
+			{
 				fprintf(fp_icg, "%s = t%d\n", (yyvsp[(1) - (3)].sval), --tempno); 
 				fprintf(fp_quad, "\t=\t\tt%d\t\t  \t\t%s\n", tempno, (yyvsp[(1) - (3)].sval));
 				tempno++;
 			}
-			else if(tempno == 0){
-				fprintf(fp_icg, "%s = %s\n", (yyvsp[(1) - (3)].sval), (yyvsp[(3) - (3)].sval)); 
-				fprintf(fp_quad, "\t=\t\t%s\t\t  \t\t%s\n", (yyvsp[(3) - (3)].sval), (yyvsp[(1) - (3)].sval));
-		
+			/*
+			if(tempno > 0){
+				fprintf(fp_icg, "%s = t%d\n", $1, --tempno); 
+				fprintf(fp_quad, "\t=\t\tt%d\t\t  \t\t%s\n", tempno, $1);
+				tempno++;
 			}
+			else if(tempno == 0){
+				fprintf(fp_icg, "%s = %s\n", $1, $3); 
+				fprintf(fp_quad, "\t=\t\t%s\t\t  \t\t%s\n", $3, $1);
+			}
+			*/
 			
 		}
     break;
 
   case 57:
-#line 528 "icg.y"
+#line 538 "icg.y"
     {	strcpy((yyval.sval), (yyvsp[(1) - (1)].sval)); }
     break;
 
   case 58:
-#line 530 "icg.y"
+#line 540 "icg.y"
     {
 			switch(assignop){
 				case 0: if(tempno > 0){
@@ -2105,42 +2115,42 @@ yyreduce:
     break;
 
   case 59:
-#line 613 "icg.y"
+#line 623 "icg.y"
     { assignop = 0; 	}
     break;
 
   case 60:
-#line 614 "icg.y"
+#line 624 "icg.y"
     { assignop = 1; 	}
     break;
 
   case 61:
-#line 615 "icg.y"
+#line 625 "icg.y"
     { assignop = 2; 	}
     break;
 
   case 62:
-#line 616 "icg.y"
+#line 626 "icg.y"
     { assignop = 3; 	}
     break;
 
   case 63:
-#line 617 "icg.y"
+#line 627 "icg.y"
     { assignop = 4; 	}
     break;
 
   case 64:
-#line 618 "icg.y"
+#line 628 "icg.y"
     { assignop = 5; 	}
     break;
 
   case 65:
-#line 623 "icg.y"
+#line 633 "icg.y"
     {	strcpy((yyval.sval), (yyvsp[(1) - (1)].sval));  }
     break;
 
   case 66:
-#line 625 "icg.y"
+#line 635 "icg.y"
     { 
 			fprintf(fp_icg,"ifFalse t%d goto L%d\n", --tempno, ln); 
 			fprintf(fp_quad, "\tifFalse\t\tt%d\t\t  \t\tL%d\n", tempno, ln);
@@ -2150,7 +2160,7 @@ yyreduce:
     break;
 
   case 67:
-#line 632 "icg.y"
+#line 642 "icg.y"
     {
 			sprintf(buffer,"t%d",tempno++);
 			m = strlen(buffer);
@@ -2168,7 +2178,7 @@ yyreduce:
     break;
 
   case 68:
-#line 647 "icg.y"
+#line 657 "icg.y"
     {
 			
 			fprintf(fp_icg, "%s = %s\n", buffer, (yyvsp[(7) - (7)].sval));
@@ -2181,42 +2191,42 @@ yyreduce:
     break;
 
   case 71:
-#line 667 "icg.y"
+#line 677 "icg.y"
     {	strcpy((yyval.sval), (yyvsp[(1) - (1)].sval)); }
     break;
 
   case 73:
-#line 673 "icg.y"
+#line 683 "icg.y"
     {	strcpy((yyval.sval), (yyvsp[(1) - (1)].sval)); 	}
     break;
 
   case 74:
-#line 674 "icg.y"
+#line 684 "icg.y"
     {	strcpy((yyval.sval), (yyvsp[(1) - (1)].sval)); 	}
     break;
 
   case 75:
-#line 675 "icg.y"
+#line 685 "icg.y"
     {	strcpy((yyval.sval), (yyvsp[(1) - (1)].sval)); 	}
     break;
 
   case 76:
-#line 676 "icg.y"
+#line 686 "icg.y"
     {	strcpy((yyval.sval), (yyvsp[(1) - (1)].sval)); 	}
     break;
 
   case 77:
-#line 677 "icg.y"
+#line 687 "icg.y"
     {	strcpy((yyval.sval), (yyvsp[(2) - (3)].sval)); 	}
     break;
 
   case 78:
-#line 682 "icg.y"
+#line 692 "icg.y"
     {	strcpy((yyval.sval), (yyvsp[(1) - (1)].sval)); }
     break;
 
   case 79:
-#line 684 "icg.y"
+#line 694 "icg.y"
     {
 			sprintf(buffer,"t%d ",tempno++);
 			m = strlen(buffer);
@@ -2231,7 +2241,7 @@ yyreduce:
     break;
 
   case 80:
-#line 696 "icg.y"
+#line 706 "icg.y"
     {
 			sprintf(buffer,"t%d",tempno++);
 			m = strlen(buffer);
@@ -2245,12 +2255,12 @@ yyreduce:
     break;
 
   case 81:
-#line 710 "icg.y"
+#line 720 "icg.y"
     {	strcpy((yyval.sval), (yyvsp[(1) - (1)].sval)); }
     break;
 
   case 82:
-#line 712 "icg.y"
+#line 722 "icg.y"
     {
 			switch(unaryop){
 				case 1: 
@@ -2285,42 +2295,42 @@ yyreduce:
     break;
 
   case 83:
-#line 747 "icg.y"
+#line 757 "icg.y"
     {	unaryop = 0; }
     break;
 
   case 84:
-#line 748 "icg.y"
+#line 758 "icg.y"
     {	unaryop = 1; }
     break;
 
   case 85:
-#line 749 "icg.y"
+#line 759 "icg.y"
     {	unaryop = 2; }
     break;
 
   case 86:
-#line 750 "icg.y"
+#line 760 "icg.y"
     {	unaryop = 3; }
     break;
 
   case 87:
-#line 751 "icg.y"
+#line 761 "icg.y"
     {	unaryop = 4; }
     break;
 
   case 88:
-#line 752 "icg.y"
+#line 762 "icg.y"
     {	unaryop = 5; }
     break;
 
   case 89:
-#line 757 "icg.y"
+#line 767 "icg.y"
     {	strcpy((yyval.sval), (yyvsp[(1) - (1)].sval)); }
     break;
 
   case 90:
-#line 759 "icg.y"
+#line 769 "icg.y"
     {
 			sprintf(buffer,"t %d",tempno++);
 			m = strlen(buffer);
@@ -2333,7 +2343,7 @@ yyreduce:
     break;
 
   case 91:
-#line 769 "icg.y"
+#line 779 "icg.y"
     {
 			sprintf(buffer,"t %d",tempno++);
 			m = strlen(buffer);
@@ -2346,12 +2356,12 @@ yyreduce:
     break;
 
   case 92:
-#line 782 "icg.y"
+#line 792 "icg.y"
     {	strcpy((yyval.sval), (yyvsp[(1) - (1)].sval)); }
     break;
 
   case 93:
-#line 784 "icg.y"
+#line 794 "icg.y"
     {
 			sprintf(buffer,"t %d",tempno++);
 			m = strlen(buffer);
@@ -2364,7 +2374,7 @@ yyreduce:
     break;
 
   case 94:
-#line 794 "icg.y"
+#line 804 "icg.y"
     {
 			sprintf(buffer,"t%d",tempno++);
 			m = strlen(buffer);
@@ -2377,7 +2387,7 @@ yyreduce:
     break;
 
   case 95:
-#line 804 "icg.y"
+#line 814 "icg.y"
     {
 			sprintf(buffer,"t%d",tempno++);
 			m = strlen(buffer);
@@ -2390,7 +2400,7 @@ yyreduce:
     break;
 
   case 96:
-#line 814 "icg.y"
+#line 824 "icg.y"
     {
 			sprintf(buffer,"t%d",tempno++);
 			m = strlen(buffer);
@@ -2403,12 +2413,12 @@ yyreduce:
     break;
 
   case 97:
-#line 827 "icg.y"
+#line 837 "icg.y"
     {	strcpy((yyval.sval), (yyvsp[(1) - (1)].sval)); }
     break;
 
   case 98:
-#line 829 "icg.y"
+#line 839 "icg.y"
     {
 			// printf("%s + %s\n", $1, $3 );
 			sprintf(buffer,"t%d",tempno++);
@@ -2422,7 +2432,7 @@ yyreduce:
     break;
 
   case 99:
-#line 840 "icg.y"
+#line 850 "icg.y"
     {
 			sprintf(buffer,"t%d",tempno++);
 			m = strlen(buffer);
@@ -2435,7 +2445,7 @@ yyreduce:
     break;
 
   case 101:
-#line 855 "icg.y"
+#line 865 "icg.y"
     {
 			sprintf(buffer,"t%d",tempno++);
 			m = strlen(buffer);
@@ -2448,7 +2458,7 @@ yyreduce:
     break;
 
   case 102:
-#line 865 "icg.y"
+#line 875 "icg.y"
     {
 			sprintf(buffer,"t%d",tempno++);
 			m = strlen(buffer);
@@ -2461,7 +2471,7 @@ yyreduce:
     break;
 
   case 103:
-#line 875 "icg.y"
+#line 885 "icg.y"
     {
 			sprintf(buffer,"t%d",tempno++);
 			m = strlen(buffer);
@@ -2474,7 +2484,7 @@ yyreduce:
     break;
 
   case 106:
-#line 894 "icg.y"
+#line 904 "icg.y"
     {
 			paramno++;	
 			fprintf(fp_icg, "call(%s, %d)\n", (yyvsp[(1) - (4)].sval), paramno);	
@@ -2485,7 +2495,7 @@ yyreduce:
     break;
 
   case 107:
-#line 902 "icg.y"
+#line 912 "icg.y"
     {
 			fprintf(fp_icg, "call(%s, 0)\n", (yyvsp[(1) - (3)].sval));	
 			fprintf(fp_quad, "\tcall\t\t%s\t\t0\n", (yyvsp[(1) - (3)].sval));
@@ -2493,7 +2503,7 @@ yyreduce:
     break;
 
   case 108:
-#line 911 "icg.y"
+#line 921 "icg.y"
     { 
 			m = strlen((yyvsp[(1) - (1)].sval));
 			strncpy((yyval.sval), (yyvsp[(1) - (1)].sval), m);	
@@ -2502,14 +2512,14 @@ yyreduce:
     break;
 
   case 109:
-#line 917 "icg.y"
+#line 927 "icg.y"
     {
 			
 		}
     break;
 
   case 116:
-#line 939 "icg.y"
+#line 949 "icg.y"
     {
 			fprintf(fp_icg, "param %s\n", (yyvsp[(1) - (1)].sval));
 			fprintf(fp_quad, "\tparam\t\t%s\n", (yyvsp[(1) - (1)].sval));
@@ -2517,7 +2527,7 @@ yyreduce:
     break;
 
   case 117:
-#line 944 "icg.y"
+#line 954 "icg.y"
     {
 			fprintf(fp_icg, "param %s\n", (yyvsp[(3) - (3)].sval));
 			fprintf(fp_quad, "\tparam\t\t%s\n", (yyvsp[(3) - (3)].sval));	
@@ -2528,7 +2538,7 @@ yyreduce:
 
 
 /* Line 1267 of yacc.c.  */
-#line 2532 "y.tab.c"
+#line 2542 "y.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -2742,7 +2752,7 @@ yyreturn:
 }
 
 
-#line 953 "icg.y"
+#line 963 "icg.y"
 
 
 
@@ -2768,9 +2778,9 @@ int main(){
 	
 	fclose(fp_icg);
 	
-	printf("Intermediate Code\n\n");
+	//printf("Intermediate Code\n\n");
 
-	system("cat Outputs/icg.txt");	
+	//system("cat Outputs/icg.txt");	
 	fclose(fp_quad);
 	
 	return 0;

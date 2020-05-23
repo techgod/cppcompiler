@@ -1,5 +1,6 @@
 int main(){
 	
+
     int x = 5;
     int p = 1;
     
@@ -8,6 +9,7 @@ int main(){
     for(i=1;i<=x;i++)
     {
         p=x*i;
+        int j = 7;
     }
     
     int j = (x > p)?x:p;

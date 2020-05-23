@@ -143,14 +143,12 @@
 	#include <string.h>
 	#include <limits.h>
 	
-
 	void yyerror(const char*);
 	int yylex();
 	extern FILE * yyin, *yyout;
 
 	int x=0;
 	
-
 	extern int line;
 	
 	int scope = 0;
@@ -216,7 +214,7 @@
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 66 "sym.y"
+#line 64 "sym.y"
 {
 	int ival;
 	float fval;
@@ -224,7 +222,7 @@ typedef union YYSTYPE
 	struct node *ptr;
 }
 /* Line 193 of yacc.c.  */
-#line 228 "y.tab.c"
+#line 226 "y.tab.c"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
@@ -237,7 +235,7 @@ typedef union YYSTYPE
 
 
 /* Line 216 of yacc.c.  */
-#line 241 "y.tab.c"
+#line 239 "y.tab.c"
 
 #ifdef short
 # undef short
@@ -563,17 +561,17 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
-       0,   100,   100,   108,   109,   110,   115,   116,   121,   122,
-     127,   128,   129,   130,   131,   136,   137,   142,   143,   148,
-     149,   150,   151,   152,   157,   158,   163,   168,   180,   181,
-     186,   187,   188,   189,   194,   195,   196,   197,   202,   203,
-     208,   312,   369,   370,   370,   614,   615,   616,   617,   618,
-     619,   624,   625,   638,   639,   644,   645,   650,   679,   684,
-     699,   714,   725,   726,   727,   732,   733,   755,   756,   757,
-     758,   759,   760,   765,   766,   774,   785,   786,   794,   802,
-     810,   822,   823,   824,   829,   830,   831,   843,   861,   878,
-     904,   905,   910,   914,   915,   916,   921,   922,   927,   928,
-     933,   934
+       0,    98,    98,   106,   107,   108,   113,   114,   119,   120,
+     125,   126,   127,   128,   129,   134,   135,   140,   141,   146,
+     147,   148,   149,   150,   155,   156,   161,   166,   178,   179,
+     184,   185,   186,   187,   192,   193,   194,   195,   200,   201,
+     206,   310,   367,   368,   368,   612,   613,   614,   615,   616,
+     617,   622,   623,   636,   637,   642,   643,   648,   677,   682,
+     697,   712,   723,   724,   725,   730,   731,   753,   754,   755,
+     756,   757,   758,   763,   764,   772,   783,   784,   792,   800,
+     808,   820,   821,   822,   827,   828,   829,   841,   859,   876,
+     902,   903,   908,   912,   913,   914,   919,   920,   925,   926,
+     931,   932
 };
 #endif
 
@@ -1624,7 +1622,7 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 100 "sym.y"
+#line 98 "sym.y"
     {
 		cleansymbol();	
                 printsymtable();
@@ -1633,7 +1631,7 @@ yyreduce:
     break;
 
   case 27:
-#line 168 "sym.y"
+#line 166 "sym.y"
     {
 						struct node *ftp;
 						ftp = first;
@@ -1649,32 +1647,32 @@ yyreduce:
     break;
 
   case 28:
-#line 180 "sym.y"
+#line 178 "sym.y"
     { }
     break;
 
   case 34:
-#line 194 "sym.y"
+#line 192 "sym.y"
     {	datatype = (yyvsp[(1) - (1)].ival); }
     break;
 
   case 35:
-#line 195 "sym.y"
+#line 193 "sym.y"
     {	datatype = (yyvsp[(1) - (1)].ival); }
     break;
 
   case 36:
-#line 196 "sym.y"
+#line 194 "sym.y"
     {	datatype = (yyvsp[(1) - (1)].ival); }
     break;
 
   case 37:
-#line 197 "sym.y"
+#line 195 "sym.y"
     {	datatype = (yyvsp[(1) - (1)].ival); }
     break;
 
   case 40:
-#line 209 "sym.y"
+#line 207 "sym.y"
     {	
 						if((yyvsp[(1) - (3)].ptr)->dtype !=- 1 && (yyvsp[(1) - (3)].ptr)->scope < scope && (yyvsp[(1) - (3)].ptr)->valid == 1){
 							// printf("case 1 \n" );
@@ -1780,7 +1778,7 @@ yyreduce:
     break;
 
   case 41:
-#line 312 "sym.y"
+#line 310 "sym.y"
     {	//previous. a , dtype = 1(int)
 						// printf("type = %d\nscope = %d\nvalid = %d", $1->dtype, $1->scope, $1->valid);
 						
@@ -1837,17 +1835,17 @@ yyreduce:
     break;
 
   case 42:
-#line 369 "sym.y"
+#line 367 "sym.y"
     {	(yyval.fval) = (yyvsp[(1) - (1)].fval); 	}
     break;
 
   case 43:
-#line 370 "sym.y"
+#line 368 "sym.y"
     { crt = lhs;  }
     break;
 
   case 44:
-#line 371 "sym.y"
+#line 369 "sym.y"
     {
 			
 				switch(assignop){
@@ -2088,42 +2086,42 @@ yyreduce:
     break;
 
   case 45:
-#line 614 "sym.y"
+#line 612 "sym.y"
     {	assignop = 0;	}
     break;
 
   case 46:
-#line 615 "sym.y"
+#line 613 "sym.y"
     {	assignop = 1;	}
     break;
 
   case 47:
-#line 616 "sym.y"
+#line 614 "sym.y"
     {	assignop = 2;	}
     break;
 
   case 48:
-#line 617 "sym.y"
+#line 615 "sym.y"
     {	assignop = 3;	}
     break;
 
   case 49:
-#line 618 "sym.y"
+#line 616 "sym.y"
     {	assignop = 4;	}
     break;
 
   case 50:
-#line 619 "sym.y"
+#line 617 "sym.y"
     {	assignop = 5;	}
     break;
 
   case 51:
-#line 624 "sym.y"
+#line 622 "sym.y"
     {	(yyval.fval) = (yyvsp[(1) - (1)].fval);	}
     break;
 
   case 52:
-#line 626 "sym.y"
+#line 624 "sym.y"
     {
 				if((yyvsp[(1) - (5)].fval) == 1){
 					(yyval.fval) = (yyvsp[(3) - (5)].fval);
@@ -2135,27 +2133,27 @@ yyreduce:
     break;
 
   case 53:
-#line 638 "sym.y"
+#line 636 "sym.y"
     {				}
     break;
 
   case 54:
-#line 639 "sym.y"
+#line 637 "sym.y"
     {		}
     break;
 
   case 55:
-#line 644 "sym.y"
+#line 642 "sym.y"
     {		}
     break;
 
   case 56:
-#line 645 "sym.y"
+#line 643 "sym.y"
     {		}
     break;
 
   case 57:
-#line 651 "sym.y"
+#line 649 "sym.y"
     {	
 					idcheck = 1;
 					lhs = (yyvsp[(1) - (1)].ptr);
@@ -2187,7 +2185,7 @@ yyreduce:
     break;
 
   case 58:
-#line 680 "sym.y"
+#line 678 "sym.y"
     {
 					(yyval.fval) = (yyvsp[(1) - (1)].ival);
 					assigntype = 0;
@@ -2195,7 +2193,7 @@ yyreduce:
     break;
 
   case 59:
-#line 685 "sym.y"
+#line 683 "sym.y"
     {	
 					assigntype = 1;
 					if(datatype == 1){
@@ -2213,7 +2211,7 @@ yyreduce:
     break;
 
   case 60:
-#line 700 "sym.y"
+#line 698 "sym.y"
     {	
 					assigntype = 2;
 					if(datatype == 2){
@@ -2231,34 +2229,34 @@ yyreduce:
     break;
 
   case 61:
-#line 715 "sym.y"
+#line 713 "sym.y"
     {
 					(yyval.fval) = (yyvsp[(2) - (3)].fval);
 				}
     break;
 
   case 62:
-#line 725 "sym.y"
+#line 723 "sym.y"
     {	(yyval.fval) = (yyvsp[(1) - (1)].fval);	}
     break;
 
   case 63:
-#line 726 "sym.y"
+#line 724 "sym.y"
     {	(yyvsp[(1) - (2)].fval)++; (yyval.fval) = (yyvsp[(1) - (2)].fval);	}
     break;
 
   case 64:
-#line 727 "sym.y"
+#line 725 "sym.y"
     {	(yyvsp[(1) - (2)].fval)--; (yyval.fval) = (yyvsp[(1) - (2)].fval);	}
     break;
 
   case 65:
-#line 732 "sym.y"
+#line 730 "sym.y"
     {	(yyval.fval) = (yyvsp[(1) - (1)].fval);	}
     break;
 
   case 66:
-#line 734 "sym.y"
+#line 732 "sym.y"
     {
 					switch(unaryop){
 						case 1:	(yyval.fval) = (yyvsp[(2) - (2)].fval);
@@ -2279,42 +2277,42 @@ yyreduce:
     break;
 
   case 67:
-#line 755 "sym.y"
+#line 753 "sym.y"
     {	unaryop = 1;	}
     break;
 
   case 68:
-#line 756 "sym.y"
+#line 754 "sym.y"
     {	unaryop = 2;	}
     break;
 
   case 69:
-#line 757 "sym.y"
+#line 755 "sym.y"
     {	unaryop = 3;	}
     break;
 
   case 70:
-#line 758 "sym.y"
+#line 756 "sym.y"
     {	unaryop = 4;	}
     break;
 
   case 71:
-#line 759 "sym.y"
+#line 757 "sym.y"
     {	unaryop = 5;	}
     break;
 
   case 72:
-#line 760 "sym.y"
+#line 758 "sym.y"
     {	unaryop = 6;	}
     break;
 
   case 73:
-#line 765 "sym.y"
+#line 763 "sym.y"
     {	(yyval.fval) = (yyvsp[(1) - (1)].fval);	}
     break;
 
   case 74:
-#line 767 "sym.y"
+#line 765 "sym.y"
     { 
 					if((yyvsp[(1) - (3)].fval) == (yyvsp[(3) - (3)].fval))
 						(yyval.fval) = 1;
@@ -2325,7 +2323,7 @@ yyreduce:
     break;
 
   case 75:
-#line 775 "sym.y"
+#line 773 "sym.y"
     { 
 					if((yyvsp[(1) - (3)].fval) != (yyvsp[(3) - (3)].fval))
 						(yyval.fval) = 1;
@@ -2335,12 +2333,12 @@ yyreduce:
     break;
 
   case 76:
-#line 785 "sym.y"
+#line 783 "sym.y"
     {	(yyval.fval) = (yyvsp[(1) - (1)].fval);	}
     break;
 
   case 77:
-#line 787 "sym.y"
+#line 785 "sym.y"
     { 
 					if((yyvsp[(1) - (3)].fval) < (yyvsp[(3) - (3)].fval))
 						(yyval.fval) = 1;
@@ -2351,7 +2349,7 @@ yyreduce:
     break;
 
   case 78:
-#line 795 "sym.y"
+#line 793 "sym.y"
     { 
 					if((yyvsp[(1) - (3)].fval) > (yyvsp[(3) - (3)].fval))
 						(yyval.fval) = 1;
@@ -2362,7 +2360,7 @@ yyreduce:
     break;
 
   case 79:
-#line 803 "sym.y"
+#line 801 "sym.y"
     { 
 					if((yyvsp[(1) - (3)].fval) <= (yyvsp[(3) - (3)].fval))
 						(yyval.fval) = 1;
@@ -2373,7 +2371,7 @@ yyreduce:
     break;
 
   case 80:
-#line 811 "sym.y"
+#line 809 "sym.y"
     { 
 					if((yyvsp[(1) - (3)].fval) >= (yyvsp[(3) - (3)].fval))
 						(yyval.fval) = 1;
@@ -2384,32 +2382,32 @@ yyreduce:
     break;
 
   case 81:
-#line 822 "sym.y"
+#line 820 "sym.y"
     {	(yyval.fval) = (yyvsp[(1) - (1)].fval);	}
     break;
 
   case 82:
-#line 823 "sym.y"
+#line 821 "sym.y"
     {	(yyval.fval) = (yyvsp[(1) - (3)].fval) + (yyvsp[(3) - (3)].fval);	}
     break;
 
   case 83:
-#line 824 "sym.y"
+#line 822 "sym.y"
     {	(yyval.fval) = (yyvsp[(1) - (3)].fval) - (yyvsp[(3) - (3)].fval);	}
     break;
 
   case 84:
-#line 829 "sym.y"
+#line 827 "sym.y"
     {	(yyval.fval) = (yyvsp[(1) - (1)].fval);	}
     break;
 
   case 85:
-#line 830 "sym.y"
+#line 828 "sym.y"
     {	(yyval.fval) = (yyvsp[(1) - (3)].fval) * (yyvsp[(3) - (3)].fval);	}
     break;
 
   case 86:
-#line 832 "sym.y"
+#line 830 "sym.y"
     {	
 						if((yyvsp[(3) - (3)].fval) == 0){
 							printf("Line:%d: ", line);
@@ -2424,7 +2422,7 @@ yyreduce:
     break;
 
   case 87:
-#line 844 "sym.y"
+#line 842 "sym.y"
     {	
 						if(assigntype == 1){
 							printf("Line:%d: ", line);
@@ -2440,7 +2438,7 @@ yyreduce:
     break;
 
   case 88:
-#line 862 "sym.y"
+#line 860 "sym.y"
     {
 					struct node *ftp;
 					ftp = first;
@@ -2460,7 +2458,7 @@ yyreduce:
     break;
 
   case 89:
-#line 879 "sym.y"
+#line 877 "sym.y"
     {	
 					printf("Line:%d: ", line);
 					printf("\033[1;35m"); 
@@ -2485,60 +2483,60 @@ yyreduce:
     break;
 
   case 92:
-#line 911 "sym.y"
+#line 909 "sym.y"
     {	
 					addfunc((yyvsp[(1) - (1)].ptr), datatype, "function");	 								
 				}
     break;
 
   case 93:
-#line 914 "sym.y"
+#line 912 "sym.y"
     { }
     break;
 
   case 94:
-#line 915 "sym.y"
+#line 913 "sym.y"
     { }
     break;
 
   case 95:
-#line 916 "sym.y"
+#line 914 "sym.y"
     { }
     break;
 
   case 96:
-#line 921 "sym.y"
+#line 919 "sym.y"
     {}
     break;
 
   case 97:
-#line 922 "sym.y"
+#line 920 "sym.y"
     {}
     break;
 
   case 98:
-#line 927 "sym.y"
+#line 925 "sym.y"
     {	addfunc((yyvsp[(2) - (2)].ptr), datatype, "param");	}
     break;
 
   case 99:
-#line 928 "sym.y"
+#line 926 "sym.y"
     {}
     break;
 
   case 100:
-#line 933 "sym.y"
+#line 931 "sym.y"
     {		}
     break;
 
   case 101:
-#line 934 "sym.y"
+#line 932 "sym.y"
     {		}
     break;
 
 
 /* Line 1267 of yacc.c.  */
-#line 2542 "y.tab.c"
+#line 2540 "y.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -2752,7 +2750,7 @@ yyreturn:
 }
 
 
-#line 938 "sym.y"
+#line 936 "sym.y"
 
 
 

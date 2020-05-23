@@ -7,7 +7,10 @@ sys.stdout= opf
 icg_file = sys.argv[1]
 
 registers=['R0','R1','R2','R3','R4','R5','R6','R7','R8','R9','R10','R11','R12']
-#registers=['R0','R1','R2','R3','R4']
+#registers=['R0','R1','R2','R3','R4','R5']
+
+def istemp(var):
+    return bool(re.match(r"^t[0-9]+$", var))
 
 #loops={}
 
@@ -61,14 +64,16 @@ def freeRegisters(i):
     for var in list(alloc.keys()):
         if intervals[var][1] < i:
             # We can free this register now, but we have to store the corresponding value in memory
-            print("STR "+var+','+alloc[var])
+            if(istemp(var)==0):
+                #print("STR "+var+','+alloc[var])
+                store(alloc[var],var)
             del intervals[var]
             registers.insert(0,alloc[var])
             del alloc[var]
 
 def isdigit(x):
     var=""
-    if(x.isdigit()):
+    if(x.isnumeric()):
         var+=("#"+x)
     else:
         if x in alloc:
@@ -76,7 +81,7 @@ def isdigit(x):
     return var
 
 def allocateRegister(var):
-    if(len(registers)>1):
+    if(len(registers)>2):
         reg = registers.pop(0)
         alloc[var] = reg
         return reg,False
@@ -84,7 +89,22 @@ def allocateRegister(var):
         reg = registers[0]
         return reg,True
 
-def assemble(lines, message = "") :
+def store(reg,mem):
+    adr=registers.pop()
+    print("ADR "+adr+',='+mem)
+    print("STR "+'[' + adr+'],'+reg)
+    print()
+    registers.insert(len(registers),adr)
+
+def load(reg,mem):
+    adr=registers.pop()
+    print("ADR "+adr+',='+mem)
+    print("LDR "+reg+',[' + adr+']')
+    print()
+    registers.insert(len(registers),adr)
+
+
+def assemble(lines) :
     for i in range(len(lines)):
         #print("Line: ",i)
         #print("Alloc:",alloc)
@@ -101,17 +121,25 @@ def assemble(lines, message = "") :
             print('B '+ token[1])
 
         elif(len(token)==3):
-            # Load Data into Registers
+            # Load data into registers when register already allocated
             if(token[0] in alloc and len(lis)==0):
-                print("LDR "+ reg +','+isdigit(token[2]))
+                print("MOV "+ reg +','+isdigit(token[2]))
 
             # Assignment Operation without any prior arithmetic operation
-            if(token[1]=='=' and token[0] not in alloc and len(lis)==0):
+            if(token[1]=='=' and token[0] not in alloc and token[2].isdigit() and len(lis)==0):
                 reg,do_str=allocateRegister(token[0])
-                print("LDR "+ reg +','+isdigit(token[2]))
+                print("MOV "+ reg +','+isdigit(token[2]))
                 if do_str:
-                    print("STR "+token[0]+','+reg)
+                    #print("STR "+token[0]+','+reg)
+                    store(reg,token[0])
 
+            elif(token[2].isdigit()==False and len(lis)==0):
+                reg,do_str=allocateRegister(token[0])
+                if token[2] in alloc:
+                    print("MOV "+ reg+','+ alloc[token[2]]) #get corresponding register for mem location
+                else:
+                    #print("LDR "+ reg+','+ (token[2])) 
+                    load(reg,token[0])
 
             if(len(lis)!=0):
                 if(lis[0][0]==token[2]):
@@ -119,9 +147,11 @@ def assemble(lines, message = "") :
                     #i.e. lis will have some value like t1 = x * i
                     #and our token will be something like p = t1 
                     do_str = False
-                    register = token #
+                    register = token
                     if(token[0] not in alloc):
                         reg,do_str=allocateRegister(token[0])
+                        #print("LDR "+reg+','+ token[0]) 
+                        #load(reg,token[0])
                         register = reg
                     if not do_str:
                         register = alloc[token[0]]
@@ -136,10 +166,11 @@ def assemble(lines, message = "") :
                         print('MUL '+register+','+alloc[lis[0][2]]+','+isdigit(lis[0][4]))
                         lis.pop(0)
                     elif(lis[0][3]=='/'):
-                        print('DIV '+register+','+alloc[lis[0][2]]+','+isdigit(lis[0][4]))
+                        print('SDIV '+register+','+alloc[lis[0][2]]+','+isdigit(lis[0][4]))
                         lis.pop(0)
                     if do_str:
-                        print("STR "+token[0]+','+reg)
+                        #print("STR "+token[0]+','+reg)
+                        store(reg,token[0])
 
         if(len(token)==4):
             #ifFalse Condition
@@ -179,8 +210,9 @@ def assemble(lines, message = "") :
 
 
     for var in alloc:
-        if(not re.search("^t[0-9]+", var)):
-            print("STR "+var+','+alloc[var])
+        if(not istemp(var)):
+            #print("STR "+var+','+alloc[var])
+            store(alloc[var],var)
 
 
 if __name__ == "__main__" :
@@ -195,4 +227,4 @@ if __name__ == "__main__" :
     f.close()
     #print(list_of_lines)
     makeAliveIntervals(list_of_lines)
-    assemble(list_of_lines, "//ICG")
+    assemble(list_of_lines)

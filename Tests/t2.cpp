@@ -11,5 +11,5 @@ int main()
         p=x*i;
     }
 
-    int final = p;
+    int final = p*x;
 }

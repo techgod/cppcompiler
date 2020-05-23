@@ -879,7 +879,7 @@ YY_RULE_SETUP
 #line 45 "sym.l"
 { fprintf(yyout, "%s", yytext);  return INCLUDE; }
 	YY_BREAK
-/* C Libraries */
+/* C++ Libraries */
 case 10:
 YY_RULE_SETUP
 #line 49 "sym.l"

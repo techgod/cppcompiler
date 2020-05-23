@@ -1,10 +1,17 @@
-a = 1
-b = 2
-c = 3
-d = 4
-e = 5
-f = 6
-t0 = a * b
-g = t0
-t1 = c * d
-h = t1
+x = 5
+p = 1
+i = 1
+L0:
+t0 = i <= x
+ifFalse t0 goto L1
+t1 = x * i
+p = t1
+j = 87
+t2 = j * 2
+yz = t2
+t3 = i + 1
+i = t3
+goto L0
+L1:
+t4 = p * x
+final = t4

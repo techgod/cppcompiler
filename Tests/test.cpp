@@ -1,14 +1,17 @@
 int main()
 {
-    int a = 1;
-    int b = 2;
-    int c = 3;
-    int d = 4;
-    int e = 5;
-    int f = 6;
+   //Program to find factorial of a number
+    int x = 5;
+    int p = 1;
+    
+    int i;
+    
+    for(i=1;i<=x;i++)
+    {
+        p=x*i;
+        int j = 87;
+        int yz = j*2;
+    }
 
-    int g;
-    int h;
-    g = a * b;
-    h = c * d;
+    int final = p*x;
 }

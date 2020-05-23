@@ -45,7 +45,7 @@ void		{ fprintf(yyout, "%s", yytext);  yylval.ival=3; return(VOID); }
 include		{ fprintf(yyout, "%s", yytext);  return INCLUDE; }
 
 
-	/* C Libraries */
+	/* C++ Libraries */
 "math"	{ fprintf(yyout, "%s", yytext);  return MATH; }
 "iostream"	{ fprintf(yyout, "%s", yytext);  return STDIO; }
 "array"	{ fprintf(yyout, "%s", yytext);  return STDLIB; }

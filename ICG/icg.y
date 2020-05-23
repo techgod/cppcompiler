@@ -539,7 +539,9 @@ assignment_expression
 	| unary_expression assignment_operator assignment_expression 		
 		{
 			switch(assignop){
-				case 0: if(tempno > 0){
+				case 0: 
+						/*
+						if(tempno > 0){
 							fprintf(fp_icg, "%s = t%d\n", $1, --tempno); 
 							fprintf(fp_quad, "\t=\t\tt%d\t\t  \t\t%s\n", tempno, $1);
 							tempno++;
@@ -547,6 +549,18 @@ assignment_expression
 						else if(tempno == 0){
 							fprintf(fp_icg, "%s = %s\n", $1, $3); 
 							fprintf(fp_quad, "\t=\t\t%s\t\t  \t\t%s\n", $3, $1);							
+						}
+						*/
+						if(*$3!='\0')
+						{
+							fprintf(fp_icg, "%s = %s\n", $1, $3); 
+							fprintf(fp_quad, "\t=\t\t%s\t\t  \t\t%s\n", $3, $1);
+						}
+						else
+						{
+							fprintf(fp_icg, "%s = t%d\n", $1, --tempno); 
+							fprintf(fp_quad, "\t=\t\tt%d\t\t  \t\t%s\n", tempno, $1);
+							tempno++;
 						}
 						break;
 

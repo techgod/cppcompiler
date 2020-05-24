@@ -7,12 +7,11 @@ sys.stdout= opf
 icg_file = sys.argv[1]
 
 registers=['R0','R1','R2','R3','R4','R5','R6','R7','R8','R9','R10','R11','R12']
-#registers=['R0','R1','R2','R3','R4','R5']
+#registers=['R0','R1','R2','R3','R4','R5','R6','R7']
 
 def istemp(var):
     return bool(re.match(r"^t[0-9]+$", var))
 
-#loops={}
 
 # Has variable to register mapping (e.g. x:r0, a:r1).
 alloc={}
@@ -80,13 +79,15 @@ def isdigit(x):
             var+=alloc[x]
     return var
 
+
 def allocateRegister(var):
-    if(len(registers)>2):
+    if(len(registers)>4):
         reg = registers.pop(0)
         alloc[var] = reg
         return reg,False
     else:
-        reg = registers[0]
+        reg = registers.pop(0)
+        alloc[var] = reg
         return reg,True
 
 def store(reg,mem):
@@ -103,8 +104,10 @@ def load(reg,mem):
     print()
     registers.insert(len(registers),adr)
 
+in_control_struct = False
 
 def assemble(lines) :
+    global in_control_struct
     for i in range(len(lines)):
         #print("Line: ",i)
         #print("Alloc:",alloc)
@@ -115,6 +118,7 @@ def assemble(lines) :
         #Labels
         if(len(token)==1):
             print(token[0])
+            in_control_struct = False
 
         #Goto <Label> Instruction
         elif(len(token)==2):
@@ -131,7 +135,9 @@ def assemble(lines) :
                 print("MOV "+ reg +','+isdigit(token[2]))
                 if do_str:
                     #print("STR "+token[0]+','+reg)
+                    alloc.pop(token[0])
                     store(reg,token[0])
+                    registers.insert(0,reg)
 
             elif(token[2].isdigit()==False and len(lis)==0):
                 reg,do_str=allocateRegister(token[0])
@@ -146,31 +152,64 @@ def assemble(lines) :
                     # We just had an arithmetic operation before this. Now we save value in a register.
                     #i.e. lis will have some value like t1 = x * i
                     #and our token will be something like p = t1 
-                    do_str = False
-                    register = token
+
+                    do_str1 = False
+                    do_str2 = False
+                    do_str3 = False
+
+                    reg1 = token
+                    op1 = token
+                    op2 = token
+
                     if(token[0] not in alloc):
-                        reg,do_str=allocateRegister(token[0])
-                        #print("LDR "+reg+','+ token[0]) 
-                        #load(reg,token[0])
-                        register = reg
-                    if not do_str:
-                        register = alloc[token[0]]
+                        reg,do_str1=allocateRegister(token[0])
+                        reg1 = reg
+                    else:
+                        reg1 = alloc[token[0]]
+
+                    if lis[0][2].isnumeric():
+                        op1 = isdigit(lis[0][2])
+                    else:
+                        if lis[0][2] not in alloc:
+                            reg,do_str2=allocateRegister(lis[0][2])
+                            load(reg,lis[0][2])
+                            op1 = reg
+                        else:
+                            op1 = isdigit(lis[0][2])
+
+                    if lis[0][4].isnumeric():
+                        op2 = isdigit(lis[0][4])
+                    else:
+                        if lis[0][4] not in alloc:
+                            reg,do_str3=allocateRegister(lis[0][4])
+                            load(reg,lis[0][4])
+                            op2 = reg
+                        else:
+                            op2 = isdigit(lis[0][4])      
 
                     if(lis[0][3]=='+'):
-                        print('ADD '+register+','+alloc[lis[0][2]]+','+isdigit(lis[0][4]))
-                        lis.pop(0)
+                        print('ADD '+reg1+','+op1+','+op2)
                     elif(lis[0][3]=='-'):
-                        print('SUB '+register+','+alloc[lis[0][2]]+','+isdigit(lis[0][4]))
-                        lis.pop(0)
+                        print('SUB '+reg1+','+op1+','+op2)
                     elif(lis[0][3]=='*'):
-                        print('MUL '+register+','+alloc[lis[0][2]]+','+isdigit(lis[0][4]))
-                        lis.pop(0)
+                        print('MUL '+reg1+','+op1+','+op2)
                     elif(lis[0][3]=='/'):
-                        print('SDIV '+register+','+alloc[lis[0][2]]+','+isdigit(lis[0][4]))
-                        lis.pop(0)
-                    if do_str:
-                        #print("STR "+token[0]+','+reg)
-                        store(reg,token[0])
+                        print('SDIV '+reg1+','+op1+','+op2)
+
+                    if do_str1:
+                        alloc.pop(token[0])
+                        store(reg1,token[0])
+                        registers.insert(0,reg1)
+                    if do_str2:
+                        alloc.pop(lis[0][2])
+                        store(op1,lis[0][2])
+                        registers.insert(0,op1)
+                    if do_str3:
+                        alloc.pop(lis[0][4])
+                        store(op2,lis[0][4])
+                        registers.insert(0,op2)
+                    
+                    lis.pop(0)
 
         if(len(token)==4):
             #ifFalse Condition
@@ -197,7 +236,7 @@ def assemble(lines) :
             if(token[3]!='+' and token[3]!='-' and token[3]!='*' and token[3]!='/'):
                 # Found a comparision condition
                 print('CMP ' + alloc[token[2]] + ','  + isdigit(token[4] ))
-
+                in_control_struct = True
                 #Save for the ifFalse condition coming up next
                 comp.append(token[3])
             else:
@@ -206,7 +245,8 @@ def assemble(lines) :
                 lis.append(token)
 
         #Store values of registers which end at this line.
-        freeRegisters(i)
+        if not in_control_struct:
+            freeRegisters(i)
 
 
     for var in alloc:

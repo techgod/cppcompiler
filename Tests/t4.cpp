@@ -8,6 +8,7 @@ int main()
     while(i<=n)
     {
         p = p*i;
+        i=i+1;
     }
 
 }

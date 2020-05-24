@@ -1,19 +1,6 @@
 	Op		Arg1		Arg2		Res
 ------------------------------------------------------------------------
 	=		5		  		x
-	=		1		  		p
-	=		1		  		i
-	Label		  		  		L0
-	<=		i		x		t0
-	ifFalse		t0		  		L1
-	*		x		i		t1
-	=		t1		  		p
-	=		87		  		j
-	*		j		2		t2
-	=		t2		  		yz
-	+		i		1 		t3
-	=		t3		  		i
-	goto		  		  		L0
-	 Label		  		  		L1
-	*		p		x		t4
-	=		t4		  		final
+	*		10		x		t0
+	=		t0		  		z
+	=		8		  		y

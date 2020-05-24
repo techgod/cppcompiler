@@ -8,8 +8,6 @@ int main()
     
     for(i=1;i<=x;i++)
     {
-        p=x*i;
+        p=p*i;
     }
-
-    int final = p*x;
 }

@@ -1,15 +1,13 @@
 int main()
 {
-    //Test to show what happens when all registers are full
+    //Stress Test : Showing the most extreme case of when registers are full
     int a = 1;
     int b = 2;
     int c = 3;
     int d = 4;
     int e = 5;
     int f = 6;
-
-    int g;
-    int h;
-    g = a * b;
-    h = c * d;
+    int i = e * f * a;
+    int g = a * b;
+    int h = c * d;
 }

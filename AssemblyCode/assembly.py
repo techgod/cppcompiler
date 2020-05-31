@@ -6,7 +6,7 @@ sys.stdout= opf
 
 icg_file = sys.argv[1]
 
-registers=['R0','R1','R2','R3','R4','R5','R6','R7','R8','R9','R10','R11','R12']
+registers=['R0','R1','R2','R3','R4','R5','R6','R7','R8','R9','R10','R11']
 #registers=['R0','R1','R2','R3','R4','R5','R6','R7']
 
 def istemp(var):
@@ -33,6 +33,7 @@ def findFirstOccurence(icg_lines,x):
 
 def findLastOccurence(icg_lines,x):
     #Get first occurence of variable from beginning
+    #print("In last occurence:",icg_lines)
     for i in range(len(icg_lines)-1,-1,-1):
         if x in icg_lines[i].split():
             return i
@@ -61,10 +62,10 @@ def makeAliveIntervals(icg_lines):
 
 def freeRegisters(i):
     for var in list(alloc.keys()):
-        if intervals[var][1] < i:
+        if var in intervals and intervals[var][1] < i:
             # We can free this register now, but we have to store the corresponding value in memory
-            if(istemp(var)==0):
-                #print("STR "+var+','+alloc[var])
+            if(not istemp(var)):
+                #print("Storing",var)
                 store(alloc[var],var)
             del intervals[var]
             registers.insert(0,alloc[var])
@@ -105,9 +106,11 @@ def load(reg,mem):
     registers.insert(len(registers),adr)
 
 in_control_struct = False
+in_arth_op = False
 
 def assemble(lines) :
     global in_control_struct
+    global in_arth_op
     for i in range(len(lines)):
         #print("Line: ",i)
         #print("Alloc:",alloc)
@@ -147,69 +150,82 @@ def assemble(lines) :
                     #print("LDR "+ reg+','+ (token[2])) 
                     load(reg,token[0])
 
-            if(len(lis)!=0):
-                if(lis[0][0]==token[2]):
-                    # We just had an arithmetic operation before this. Now we save value in a register.
-                    #i.e. lis will have some value like t1 = x * i
-                    #and our token will be something like p = t1 
+            while(len(lis)>0):
+                # There are some arithmetic operations to be done
+                # We just had an arithmetic operation before this. Now we save value in a register.
+                #i.e. lis will have some value like t1 = x * i
+                #and our token will be something like p = t1 
 
-                    do_str1 = False
-                    do_str2 = False
-                    do_str3 = False
+                do_str1 = False
+                do_str2 = False
+                do_str3 = False
 
-                    reg1 = token
-                    op1 = token
-                    op2 = token
-
+                reg1 = token
+                op1 = token
+                op2 = token
+                
+                if(len(lis)==1):
                     if(token[0] not in alloc):
                         reg,do_str1=allocateRegister(token[0])
                         reg1 = reg
                     else:
                         reg1 = alloc[token[0]]
-
-                    if lis[0][2].isnumeric():
-                        op1 = isdigit(lis[0][2])
-                    else:
-                        if lis[0][2] not in alloc:
-                            reg,do_str2=allocateRegister(lis[0][2])
-                            load(reg,lis[0][2])
-                            op1 = reg
-                        else:
-                            op1 = isdigit(lis[0][2])
-
-                    if lis[0][4].isnumeric():
-                        op2 = isdigit(lis[0][4])
-                    else:
-                        if lis[0][4] not in alloc:
-                            reg,do_str3=allocateRegister(lis[0][4])
-                            load(reg,lis[0][4])
-                            op2 = reg
-                        else:
-                            op2 = isdigit(lis[0][4])      
-
-                    if(lis[0][3]=='+'):
-                        print('ADD '+reg1+','+op1+','+op2)
-                    elif(lis[0][3]=='-'):
-                        print('SUB '+reg1+','+op1+','+op2)
-                    elif(lis[0][3]=='*'):
-                        print('MUL '+reg1+','+op1+','+op2)
-                    elif(lis[0][3]=='/'):
-                        print('SDIV '+reg1+','+op1+','+op2)
-
-                    if do_str1:
-                        alloc.pop(token[0])
-                        store(reg1,token[0])
-                        registers.insert(0,reg1)
-                    if do_str2:
-                        alloc.pop(lis[0][2])
-                        store(op1,lis[0][2])
-                        registers.insert(0,op1)
-                    if do_str3:
-                        alloc.pop(lis[0][4])
-                        store(op2,lis[0][4])
-                        registers.insert(0,op2)
+                else:
+                    #Temporary variable in the beginning
+                    if(istemp(lis[0][0])):
+                        reg,do_str2=allocateRegister(lis[0][0])
+                        reg1 = reg
                     
-                    lis.pop(0)
+
+                if lis[0][2].isnumeric():
+                    op1 = isdigit(lis[0][2])
+                else:
+                    if lis[0][2] not in alloc:
+                        reg,do_str2=allocateRegister(lis[0][2])
+                        load(reg,lis[0][2])
+                        op1 = reg
+                    else:
+                        op1 = isdigit(lis[0][2])
+
+                if lis[0][4].isnumeric():
+                    op2 = isdigit(lis[0][4])
+                else:
+                    if lis[0][4] not in alloc:
+                        reg,do_str3=allocateRegister(lis[0][4])
+                        load(reg,lis[0][4])
+                        op2 = reg
+                    else:
+                        op2 = isdigit(lis[0][4])      
+
+                if(lis[0][3]=='+'):
+                    print('ADD '+reg1+','+op1+','+op2)
+                elif(lis[0][3]=='-'):
+                    print('SUB '+reg1+','+op1+','+op2)
+                elif(lis[0][3]=='*'):
+                    print('MUL '+reg1+','+op1+','+op2)
+                elif(lis[0][3]=='/'):
+                    print('SDIV '+reg1+','+op1+','+op2)
+
+                if do_str1:
+                    alloc.pop(token[0])
+                    store(reg1,token[0])
+                    registers.insert(len(registers)-1,reg1)
+               
+                if do_str2:
+                    alloc.pop(lis[0][2])
+                    store(op1,lis[0][2])
+                    registers.insert(len(registers)-1,op1)
+                elif(istemp(lis[0][2]) and lis[0][2] in alloc):
+                    alloc.pop(lis[0][2])
+                    registers.insert(0,op1)
+                
+                if do_str3:
+                    alloc.pop(lis[0][4])
+                    store(op2,lis[0][4])
+                    registers.insert(len(registers)-1,op2)
+
+                lis.pop(0)
+            in_arth_op = False
 
         if(len(token)==4):
             #ifFalse Condition
@@ -243,9 +259,10 @@ def assemble(lines) :
                 # It's one of the arithmetic operations.
                 # Saving this to be used in the next line.
                 lis.append(token)
+                in_arth_op = True
 
         #Store values of registers which end at this line.
-        if not in_control_struct:
+        if not in_control_struct and not in_arth_op:
             freeRegisters(i)
 
 

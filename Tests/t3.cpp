@@ -7,7 +7,7 @@ int main()
     int d = 4;
     int e = 5;
     int f = 6;
-    int i = e * f * a;
+    int i = e * f;
     int g = a * b;
     int h = c * d;
 }
